@@ -23,7 +23,7 @@ namespace Zork
             }
             set
             {
-                Location = World?.RoomsByName.GetValueorDefault(value);
+                Location = World?.RoomsByName.GetValueOrDefault(value);
             }
         }
 
@@ -44,6 +44,7 @@ namespace Zork
 
             return isValidMove;
         }
+        public int Moves { get; set; }
 
 
 

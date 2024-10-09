@@ -8,6 +8,9 @@ namespace Zork
 {
     public class Command : IEquatable<Command>
     {
+        private string commandName;
+        private IEnumerable<string> verbs;
+
         public string Name { get; set; }
         public string[] Verbs { get; }
 
@@ -25,6 +28,14 @@ namespace Zork
             Verbs = verbs;
             Action = action;
         }
+
+        public Command(string commandName, IEnumerable<string> verbs, Action<Game, CommandContext> action)
+        {
+            this.commandName = commandName;
+            this.verbs = verbs;
+            Action = action;
+        }
+
         public static bool operator ==(Command lhs, Command rhs)
         {
             if(ReferenceEquals(lhs, rhs))
