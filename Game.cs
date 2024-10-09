@@ -20,7 +20,7 @@ namespace Zork
         public Player Player { get; private set; }
 
         [JsonIgnore]
-        public CommandManager CommandManager { get; };
+        public CommandManager CommandManager { get; }
 
         [JsonIgnore]
         public bool IsRunning { get; }
@@ -47,7 +47,7 @@ namespace Zork
                 Instance.LoadCommands();
                 Instance.LoadScripts();
                 Instance.DisplayWelcomeMessage();
-                Instance.IsRun();
+                Instance.Run();
             }
         }
 
@@ -65,7 +65,7 @@ namespace Zork
                 }
 
                 Console.Write("\n> ");
-                if(CommandManager.PerformCommand(this.Player Console.ReadLine().Trim()))
+                if(CommandManager.PerformCommand(this, Console.ReadLine().Trim()))
                 {
                     Player.Moves++;
                 }
@@ -150,11 +150,17 @@ namespace Zork
             }
         }
 
-        private void DisplayWelcomeMessage() => Console.WriteLine(WelcoimeMessage);
+        private void DisplayWelcomeMessage() => Console.WriteLine(WelcomeMessage);
 
         public static readonly Random Random = new Random();
         private static readonly string ScriptDirectory = "Scripts";
         private static readonly string ScriptFileExtension = "*.csx";
+
+        [JsonProperty]
+        private string WelcomeMessage = null;
+
+        private bool mIsRunning;
+        private bool mIsRestarting;
     }
 }
 
