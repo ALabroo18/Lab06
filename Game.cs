@@ -99,8 +99,8 @@ namespace Zork
                                   let attribute = method.GetCustomAttribute<CommandAttribute>()
                                   where type.IsClass && type.GetCustomAttribute<CommandClassAttribute>() != null
                                   where attribute != null
-                                  select new Commands(attribute.CommandName, attribute.Verbs,
-                                  (Action<Game, CommandContext>)Delegate.CreateDelegate(typeof(Action<Game, CommandContext>)
+                                  select new Command(attribute.CommandName, attribute.Verbs,
+                                  (Action<Game, CommandContext>)Delegate.CreateDelegate(typeof(Action<Game, CommandContext>),
                                   method)));
             CommandManager.AddCommands(commandMethods);
 
@@ -116,7 +116,7 @@ namespace Zork
                     var scriptOptions = ScriptOptions.Default.AddReferences(Assembly.GetExecutingAssembly());
 #if DEBUG
                     scriptOptions = scriptOptions.WithEmitDebugInformation(true)
-                                .WithDebugInformation(true).WithFilePath(new FileInfo(file).FullName)
+                                .WithFilePath(new FileInfo(file).FullName)
                                 .WithFileEncoding(Encoding.UTF8);
 #endif
                     string script = File.ReadAllText(file);
