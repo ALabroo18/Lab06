@@ -1,4 +1,4 @@
-[
+
   {
     "WelcomeMessage": "Welcome to ZORK",
     "World": {
@@ -78,10 +78,7 @@
               "East": "Forest 3"
             }
         }
-      
 
       ]
     }
   }
-
-]
