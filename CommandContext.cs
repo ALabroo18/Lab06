@@ -14,7 +14,7 @@ namespace Zork
 
         public CommandContext(string commandString, Command command)
         {
-            commandString = commandString;
+            CommandString = commandString;
             Command = command;
         }
     }
